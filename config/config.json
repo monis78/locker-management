@@ -1,0 +1,41 @@
+{
+  "development": {
+    "host": "localhost",
+    "username": "postgres",
+    "password": "ansari123",
+    "database": "postgres",
+    "dialect": "postgres",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "test": {
+    "host": "localhost",
+    "username": "postgres",
+    "password": "ansari123",
+    "database": "postgres",
+    "dialect": "postgres",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "production": {
+    "host": "localhost",
+    "username": "postgres",
+    "password": "ansari123",
+    "database": "postgres",
+    "dialect": "postgres",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  }
+}
