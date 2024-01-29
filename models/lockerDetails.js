@@ -1,5 +1,9 @@
+/**
+ * @param {import('sequelize').Sequelize} sequelize
+ * @param {import('sequelize').DataTypes} Sequelize
+ */
 module.exports = (sequelize, Sequelize) => {
-  const Tutorial = sequelize.define("lockerDetails", {
+  const lockerDetails = sequelize.define("lockerDetails", {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -20,5 +24,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return Tutorial;
+  return lockerDetails;
 };

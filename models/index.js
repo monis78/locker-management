@@ -14,6 +14,11 @@ const sequelize = new Sequelize(
       acquire: dbConfig.pool.acquire,
       idle: dbConfig.pool.idle,
     },
+    logging: (query, timing) => {
+      console.log("\x1b[36m%s\x1b[0m", "Executing SQL query:");
+      console.log(`\x1b[32m${query}\x1b[0m`);
+      console.log("\x1b[36m%s\x1b[0m", `Query execution time: ${timing}ms`);
+    },
   }
 );
 
@@ -22,20 +27,45 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.lockerDetails = require("./lockerDetails.js")(sequelize, Sequelize);
-db.locker = require("./lockers.js")(sequelize, Sequelize);
+db.lockers = require("./lockers")(sequelize, Sequelize);
 db.transactiondetails = require("./transactionDetails.js")(
   sequelize,
   Sequelize
 );
-db.locker.belongsTo(db.lockerDetails);
-db.lockerDetails.hasOne(db.locker, {
+db.users = require("./users.js")(sequelize, Sequelize);
+db.payments = require("./payments.js")(sequelize, Sequelize);
+
+db.lockers.belongsTo(db.lockerDetails, { foreignKey: "lockerDetailId" });
+db.lockerDetails.hasMany(db.lockers, {
+  foreignKey: {
+    allowNull: false, // This makes the association required
+    foreignKey: "lockerDetailId",
+  },
+});
+
+db.transactiondetails.belongsTo(db.lockers);
+db.lockers.hasMany(db.transactiondetails, {
   foreignKey: {
     allowNull: false, // This makes the association required
   },
 });
-// db.locker.hasMany(db.transactiondetails);
-db.transactiondetails.belongsTo(db.locker, {
-  allowNull: false,
+
+db.transactiondetails.belongsTo(db.users);
+db.users.hasMany(db.transactiondetails, {
+  foreignKey: {
+    allowNull: false, // This makes the association required
+  },
+});
+
+db.payments.belongsTo(db.transactiondetails, {
+  foreignKey: {
+    allowNull: false, // This makes the association required
+  },
+});
+db.transactiondetails.hasMany(db.payments, {
+  foreignKey: {
+    allowNull: false, // This makes the association required
+  },
 });
 
 module.exports = db;

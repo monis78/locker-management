@@ -5,20 +5,21 @@ module.exports = {
    *  @param {import('sequelize').DataTypes} Sequelize
    */
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("locker", {
+    await queryInterface.createTable("payments", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
       },
-      lockerDetailId: {
+      lockerName: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
+
       bookingStatus: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -30,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("locker");
+    await queryInterface.dropTable("payments");
   },
 };

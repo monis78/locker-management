@@ -1,15 +1,15 @@
 "use strict";
 const smallLocker = {
   lockerDetailId: 1,
-  booked: false,
+  bookingStatus: false,
 };
 const mediumLocker = {
   lockerDetailId: 2,
-  booked: false,
+  bookingStatus: false,
 };
 const largerLocker = {
   lockerDetailId: 3,
-  booked: false,
+  bookingStatus: false,
 };
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

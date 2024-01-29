@@ -5,11 +5,11 @@ module.exports = {
    */
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("transactionDetails", {
-      id: {
+      transactionId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
       },
       lockerId: {
         allowNull: false,
@@ -21,13 +21,13 @@ module.exports = {
       checkoutTime: {
         type: Sequelize.DATE,
       },
-      paymentStatus: {
-        type: Sequelize.STRING,
-      },
-      price: {
-        type: Sequelize.STRING,
-      },
       userId: {
+        type: Sequelize.INTEGER,
+      },
+      totalHours: {
+        type: Sequelize.INTEGER,
+      },
+      totalCharges: {
         type: Sequelize.INTEGER,
       },
       createdAt: {

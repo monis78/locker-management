@@ -1,3 +1,4 @@
+const { findUniqueLockers } = require("../controllers/locker.controller.js");
 const lockerDetails = require("../controllers/lockerDetails.controller.js");
 var router = require("express").Router();
 
@@ -5,7 +6,7 @@ var router = require("express").Router();
 router.post("/", lockerDetails.create);
 
 // Retrieve all lockers
-router.get("/", lockerDetails.findAll);
+router.get("/", findUniqueLockers);
 
 // Retrieve a single Locker with id
 router.get("/:id", lockerDetails.findOne);

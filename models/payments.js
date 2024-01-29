@@ -3,20 +3,20 @@
  * @param {import('sequelize').DataTypes} Sequelize
  */
 module.exports = (sequelize, Sequelize) => {
-  const Locker = sequelize.define("locker", {
+  const payments = sequelize.define("payments", {
     id: {
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
     },
-    lockerDetailId: {
+    lockerName: {
       allowNull: false,
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
     },
     bookingStatus: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.STRING,
     },
+
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
@@ -27,5 +27,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return Locker;
+  return payments;
 };

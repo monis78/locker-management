@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081",
+  origin: ["http://localhost:8081", "http://localhost:3000"],
 };
 
 app.use(cors(corsOptions));
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./models");
-db.sequelize.sync();
+// db.sequelize.sync({ alter: true });
 
 // simple route
 app.get("/", (req, res) => {

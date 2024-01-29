@@ -1,26 +1,29 @@
+/**
+ * @param {import('sequelize').Sequelize} sequelize
+ * @param {import('sequelize').DataTypes} Sequelize
+ */
 module.exports = (sequelize, Sequelize) => {
   const TransactionDetails = sequelize.define("transactionDetails", {
     id: {
-      allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
     },
-    // lockerId: {
-    //   allowNull: false,
-    //   type: Sequelize.INTEGER,
-    // },
     bookingTime: {
       type: Sequelize.DATE,
     },
     checkoutTime: {
       type: Sequelize.DATE,
     },
-    paymentStatus: {
-      type: Sequelize.STRING,
-    },
     price: {
       type: Sequelize.STRING,
+    },
+    totalHours: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+    },
+    totalCharges: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
     },
     // userId: {
     //   allowNull: false,

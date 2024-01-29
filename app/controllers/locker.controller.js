@@ -1,6 +1,6 @@
 const db = require("../../models");
 const lockerDetails = require("../../models/lockerDetails");
-const Locker = db.locker;
+const Locker = db.lockers;
 const Op = db.Sequelize.Op;
 // Create and Save a new Locker
 exports.create = (req, res) => {
@@ -46,13 +46,12 @@ exports.findAll = (req, res) => {
 };
 
 // Retrieve all Locker from the database.
-exports.findUniqueLockers = (req, res) => {
+exports.findUniqueLockers = async (req, res) => {
   db.sequelize
     .query(
       `SELECT "locker"."lockerDetailId", CASE
-        WHEN COUNT(CASE WHEN booked = false THEN 1 ELSE 0 END) > 0 THEN false
-        ELSE true
-        END as "isAllBooked" , "lockerDetail"."name" AS "name", "lockerDetail"."description" AS "description" FROM "lockers" AS "locker"
+        WHEN bool_or( "locker"."bookingStatus" = false )  THEN false ELSE true END as "isAllBooked" ,
+        "lockerDetail"."name" AS "name", "lockerDetail"."description" AS "description" FROM "lockers" AS "locker"
          LEFT JOIN "lockerDetails" AS "lockerDetail" ON "locker"."lockerDetailId" = "lockerDetail"."id" GROUP BY "locker"."lockerDetailId", "lockerDetail"."id";`,
       {
         type: db.sequelize.QueryTypes.SELECT,

@@ -5,19 +5,24 @@ module.exports = {
    *  @param {import('sequelize').DataTypes} Sequelize
    */
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("locker", {
-      id: {
+    await queryInterface.createTable("users", {
+      userId: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
       },
-      lockerDetailId: {
+      userName: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
-      bookingStatus: {
-        type: Sequelize.BOOLEAN,
+      role: {
+        type: Sequelize.STRING,
+      },
+      password: {
+        type: Sequelize.STRING,
+      },
+      mobileNo: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("locker");
+    await queryInterface.dropTable("users");
   },
 };

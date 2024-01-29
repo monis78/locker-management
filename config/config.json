@@ -2,7 +2,7 @@
   "development": {
     "host": "localhost",
     "username": "postgres",
-    "password": "ansari123",
+    "password": "postgres",
     "database": "postgres",
     "dialect": "postgres",
     "pool": {
@@ -15,7 +15,7 @@
   "test": {
     "host": "localhost",
     "username": "postgres",
-    "password": "ansari123",
+    "password": "postgres",
     "database": "postgres",
     "dialect": "postgres",
     "pool": {
@@ -28,7 +28,7 @@
   "production": {
     "host": "localhost",
     "username": "postgres",
-    "password": "ansari123",
+    "password": "postgres",
     "database": "postgres",
     "dialect": "postgres",
     "pool": {
